@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: pitest-html-report
+Implementation-Version: 1.2.5-SNAPSHOT
+Built-By: matth
+Implementation-Vendor-Id: org.pitest
+Build-Jdk: 1.8.0_144
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: org.pitest
+Main-Class: org.pitest.mutationtest.commandline.MutationCoverageReport
+
