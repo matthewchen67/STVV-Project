@@ -1,0 +1,14 @@
+org\pitest\mutationtest\engine\gregor\mutators\ConstructorCallMutatorTest$1.class
+org\pitest\mutationtest\engine\gregor\mutators\experimental\RemoveSwitchMutatorTest$1.class
+org\pitest\mutationtest\engine\gregor\mutators\InlineConstantMutatorTest$1.class
+org\pitest\junit\JUnitTestClassIdentifierTest$1.class
+org\pitest\mutationtest\engine\gregor\mutators\experimental\SwitchMutatorTest$1.class
+org\pitest\mutationtest\engine\gregor\mutators\ArgumentPropagationMutatorTest$1.class
+org\pitest\mutationtest\engine\gregor\mutators\experimental\ReturnValuesMutatorTest$1.class
+org\pitest\mutationtest\engine\gregor\mutators\VoidMethodCallMutatorTest$1.class
+org\pitest\coverage\codeassist\ClassUtils$1.class
+org\pitest\mutationtest\engine\gregor\mutators\InvertNegsMutatorTest$1.class
+org\pitest\mutationtest\engine\gregor\mutators\NonVoidMethodCallMutatorTest$1.class
+org\pitest\mutationtest\engine\gregor\mutators\experimental\RemoveIncrementsMutatorTest$1.class
+org\pitest\mutationtest\engine\gregor\mutators\experimental\MemberVariableMutatorTest$1.class
+org\pitest\mutationtest\engine\gregor\mutators\IncrementsMutatorTest$1.class

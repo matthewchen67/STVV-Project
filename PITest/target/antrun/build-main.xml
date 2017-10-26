@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="maven-antrun-" default="main"  >
+<target name="main">
+  <delete file="C:\Users\matth\Desktop\Control Copy\pitest-master\pitest\target/pitest-1.2.5-SNAPSHOT.jar"/>
+</target>
+</project>
