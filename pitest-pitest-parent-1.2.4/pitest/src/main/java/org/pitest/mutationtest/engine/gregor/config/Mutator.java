@@ -33,11 +33,16 @@ import org.pitest.help.PitHelpError;
 import org.pitest.mutationtest.engine.gregor.MethodMutatorFactory;
 import org.pitest.mutationtest.engine.gregor.mutators.ArgumentPropagationMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator;
+import org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator2;
+import org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator3;
 import org.pitest.mutationtest.engine.gregor.mutators.ConstructorCallMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.IncrementsMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.InlineConstantMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.InvertNegsMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.MathMutator;
+import org.pitest.mutationtest.engine.gregor.mutators.MathMutator2;
+import org.pitest.mutationtest.engine.gregor.mutators.MathMutator3;
+import org.pitest.mutationtest.engine.gregor.mutators.MathMutator4;
 import org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator;
@@ -76,7 +81,12 @@ public final class Mutator {
      * Default mutator that mutates binary arithmetic operations.
      */
     add("MATH", MathMutator.MATH_MUTATOR);
-
+    /**
+     * Additional mutators that mutate binary arithmetic operations
+     */
+    add("MATH2", MathMutator2.MATH_MUTATOR2);
+    add("MATH3", MathMutator3.MATH_MUTATOR3);
+    add("MATH4", MathMutator4.MATH_MUTATOR4);
     /**
      * Default mutator that removes method calls to void methods.
      *
@@ -95,7 +105,14 @@ public final class Mutator {
      */
     add("CONDITIONALS_BOUNDARY",
         ConditionalsBoundaryMutator.CONDITIONALS_BOUNDARY_MUTATOR);
-
+    /**
+     * Additional mutators that replaces the relational operators with their
+     * boundary counterpart.
+     */
+    add("CONDITIONALS_BOUNDARY2",
+            ConditionalsBoundaryMutator2.CONDITIONALS_BOUNDARY_MUTATOR2);
+    add("CONDITIONALS_BOUNDARY3",
+            ConditionalsBoundaryMutator3.CONDITIONALS_BOUNDARY_MUTATOR3);
     /**
      * Default mutator that mutates increments, decrements and assignment
      * increments and decrements of local variables.
@@ -190,9 +207,12 @@ public final class Mutator {
   public static Collection<MethodMutatorFactory> defaults() {
     return group(InvertNegsMutator.INVERT_NEGS_MUTATOR,
         ReturnValsMutator.RETURN_VALS_MUTATOR, MathMutator.MATH_MUTATOR,
+        MathMutator2.MATH_MUTATOR2, MathMutator3.MATH_MUTATOR3, MathMutator4.MATH_MUTATOR4,
         VoidMethodCallMutator.VOID_METHOD_CALL_MUTATOR,
         NegateConditionalsMutator.NEGATE_CONDITIONALS_MUTATOR,
         ConditionalsBoundaryMutator.CONDITIONALS_BOUNDARY_MUTATOR,
+        ConditionalsBoundaryMutator2.CONDITIONALS_BOUNDARY_MUTATOR2,
+        ConditionalsBoundaryMutator3.CONDITIONALS_BOUNDARY_MUTATOR3,
         IncrementsMutator.INCREMENTS_MUTATOR);
   }
 
