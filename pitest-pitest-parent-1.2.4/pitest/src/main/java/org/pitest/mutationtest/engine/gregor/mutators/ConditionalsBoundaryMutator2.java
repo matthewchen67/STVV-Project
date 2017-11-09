@@ -26,7 +26,7 @@ import org.pitest.mutationtest.engine.gregor.MutationContext;
 
 public enum ConditionalsBoundaryMutator2 implements MethodMutatorFactory {
 
-  CONDITIONALS_BOUNDARY_MUTATOR;
+  CONDITIONALS_BOUNDARY_MUTATOR2;
 
   @Override
   public MethodVisitor create(final MutationContext context,

@@ -28,7 +28,7 @@ import org.pitest.mutationtest.engine.gregor.ZeroOperandMutation;
 
 public enum MathMutator2 implements MethodMutatorFactory {
 
-  MATH_MUTATOR;
+  MATH_MUTATOR2;
 
   @Override
   public MethodVisitor create(final MutationContext context,
