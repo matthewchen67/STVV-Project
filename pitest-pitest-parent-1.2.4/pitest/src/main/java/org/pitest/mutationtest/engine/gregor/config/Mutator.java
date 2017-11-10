@@ -48,6 +48,9 @@ import org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator.Choice;
 import org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator;
+import org.pitest.mutationtest.engine.gregor.mutators.experimental.AddIncrementsMutator;
+import org.pitest.mutationtest.engine.gregor.mutators.experimental.AddDecrementsMutator;
+import org.pitest.mutationtest.engine.gregor.mutators.experimental.NegateVariableMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveIncrementsMutator;
@@ -117,12 +120,16 @@ public final class Mutator {
      * Default mutator that mutates increments, decrements and assignment
      * increments and decrements of local variables.
      */
+    add("ADD_INCREMENTS", AddIncrementsMutator.ADD_INCREMENTS_MUTATOR);
+    add("ADD_DECREMENTS", AddDecrementsMutator.ADD_DECREMENTS_MUTATOR);
+    add("NEGATE_VARIABLES", NegateVariableMutator.NEGATE_VARIABLE_MUTATOR);
+    
     add("INCREMENTS", IncrementsMutator.INCREMENTS_MUTATOR);
-
+    
     /**
      * Optional mutator that removes local variable increments.
      */
-
+    
     add("REMOVE_INCREMENTS", RemoveIncrementsMutator.REMOVE_INCREMENTS_MUTATOR);
 
     /**
