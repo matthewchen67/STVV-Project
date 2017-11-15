@@ -9,23 +9,23 @@ import org.pitest.mutationtest.engine.gregor.MutationContext;
 
 public enum AddIncrementsMutator implements MethodMutatorFactory {
 
-  ADD_INCREMENTS_MUTATOR;
-
-  @Override
-  public MethodVisitor create(final MutationContext context,
-      final MethodInfo methodInfo, final MethodVisitor methodVisitor) {
-    return new AddIncrementsMethodVisitor(this, context, methodVisitor);
-  }
-
-  @Override
-  public String getGloballyUniqueId() {
-    return this.getClass().getName();
-  }
-
-  @Override
-  public String getName() {
-    return name();
-  }
+    UOI_MUTATOR;
+    
+    @Override
+    public MethodVisitor create(final MutationContext context,
+        final MethodInfo methodInfo, final MethodVisitor methodVisitor) {
+      return new AddIncrementsMethodVisitor(this, context, methodVisitor);
+    }
+    
+    @Override
+    public String getGloballyUniqueId() {
+      return this.getClass().getName();
+    }
+    
+    @Override
+    public String getName() {
+      return name();
+    }
 }
 
 class AddIncrementsMethodVisitor extends MethodVisitor {
@@ -45,36 +45,52 @@ class AddIncrementsMethodVisitor extends MethodVisitor {
     if (opcode == Opcodes.ILOAD) {
       final MutationIdentifier newId = this.context.registerMutation(
           this.factory, "Added integer increment");
-      mv.visitVarInsn(opcode, var);
-      mv.visitIincInsn(var, 1);
-      super.visitVarInsn(opcode, var);
+      if (this.context.shouldMutate(newId)) {
+          this.mv.visitVarInsn(opcode, var);
+          this.mv.visitIincInsn(var, 1);
+          super.visitVarInsn(opcode, var);
+      } else {
+          super.visitVarInsn(opcode, var);
+      }
     } else if (opcode == Opcodes.DLOAD) {
       final MutationIdentifier newId = this.context.registerMutation(
           this.factory, "Added double increment");
-      mv.visitVarInsn(opcode, var);
-      mv.visitInsn(Opcodes.DUP2);
-      mv.visitInsn(Opcodes.DCONST_1);
-      mv.visitInsn(Opcodes.DADD);
-      mv.visitVarInsn(Opcodes.DSTORE, var);
-      super.visitVarInsn(opcode, var);
+      if (this.context.shouldMutate(newId)) {
+          this.mv.visitVarInsn(opcode, var);
+          this.mv.visitInsn(Opcodes.DUP2);
+          this.mv.visitInsn(Opcodes.DCONST_1);
+          this.mv.visitInsn(Opcodes.DADD);
+          this.mv.visitVarInsn(Opcodes.DSTORE, var);
+          super.visitVarInsn(opcode, var);
+      } else {
+          super.visitVarInsn(opcode, var);
+      }
     } else if (opcode == Opcodes.FLOAD) {
       final MutationIdentifier newId = this.context.registerMutation(
           this.factory, "Added float increment");
-      mv.visitVarInsn(opcode, var);
-      mv.visitInsn(Opcodes.DUP);
-      mv.visitInsn(Opcodes.FCONST_1);
-      mv.visitInsn(Opcodes.FADD);
-      mv.visitVarInsn(Opcodes.FSTORE, var);
-      super.visitVarInsn(opcode, var);
+      if (this.context.shouldMutate(newId)) {
+          this.mv.visitVarInsn(opcode, var);
+          this.mv.visitInsn(Opcodes.DUP);
+          this.mv.visitInsn(Opcodes.FCONST_1);
+          this.mv.visitInsn(Opcodes.FADD);
+          this.mv.visitVarInsn(Opcodes.FSTORE, var);
+          super.visitVarInsn(opcode, var);
+      } else {
+          super.visitVarInsn(opcode, var);
+      }
     } else if (opcode == Opcodes.LLOAD) {
       final MutationIdentifier newId = this.context.registerMutation(
           this.factory, "Added long increment");
-      mv.visitVarInsn(opcode, var);
-      mv.visitInsn(Opcodes.DUP2);
-      mv.visitInsn(Opcodes.LCONST_1);
-      mv.visitInsn(Opcodes.LADD);
-      mv.visitVarInsn(Opcodes.LSTORE, var);
-      super.visitVarInsn(opcode, var);
+      if (this.context.shouldMutate(newId)) {
+          this.mv.visitVarInsn(opcode, var);
+          this.mv.visitInsn(Opcodes.DUP2);
+          this.mv.visitInsn(Opcodes.LCONST_1);
+          this.mv.visitInsn(Opcodes.LADD);
+          this.mv.visitVarInsn(Opcodes.LSTORE, var);
+          super.visitVarInsn(opcode, var);
+      } else {
+          super.visitVarInsn(opcode, var);
+      }
     } else {
       super.visitVarInsn(opcode, var);
     }

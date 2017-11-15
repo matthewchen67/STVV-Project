@@ -50,7 +50,11 @@ import org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator.C
 import org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.experimental.AddIncrementsMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.experimental.AddDecrementsMutator;
-import org.pitest.mutationtest.engine.gregor.mutators.experimental.NegateVariableMutator;
+import org.pitest.mutationtest.engine.gregor.mutators.experimental.ABSMutator;
+import org.pitest.mutationtest.engine.gregor.mutators.experimental.CRCRMutator1;
+import org.pitest.mutationtest.engine.gregor.mutators.experimental.CRCRMutator2;
+import org.pitest.mutationtest.engine.gregor.mutators.experimental.CRCRMutator3;
+import org.pitest.mutationtest.engine.gregor.mutators.experimental.CRCRMutator4;
 import org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveIncrementsMutator;
@@ -87,9 +91,7 @@ public final class Mutator {
     /**
      * Additional mutators that mutate binary arithmetic operations
      */
-    add("MATH2", MathMutator2.MATH_MUTATOR2);
-    add("MATH3", MathMutator3.MATH_MUTATOR3);
-    add("MATH4", MathMutator4.MATH_MUTATOR4);
+    
     /**
      * Default mutator that removes method calls to void methods.
      *
@@ -109,20 +111,39 @@ public final class Mutator {
     add("CONDITIONALS_BOUNDARY",
         ConditionalsBoundaryMutator.CONDITIONALS_BOUNDARY_MUTATOR);
     /**
-     * Additional mutators that replaces the relational operators with their
-     * boundary counterpart.
+     * Mutators that extend the PITest Mutation Engine
      */
-    add("CONDITIONALS_BOUNDARY2",
+    //ABS
+    add("ABS", ABSMutator.ABS_MUTATOR);//
+    
+    //ROR
+    add("ROR1",
+            ConditionalsBoundaryMutator.CONDITIONALS_BOUNDARY_MUTATOR);
+    add("ROR2",
             ConditionalsBoundaryMutator2.CONDITIONALS_BOUNDARY_MUTATOR2);
-    add("CONDITIONALS_BOUNDARY3",
+    add("ROR3",
             ConditionalsBoundaryMutator3.CONDITIONALS_BOUNDARY_MUTATOR3);
+    
+    //CRCR
+    add("CRCR1", CRCRMutator1.CRCR_MUTATOR);//
+    add("CRCR2", CRCRMutator2.CRCR_MUTATOR);//
+    add("CRCR3", CRCRMutator3.CRCR_MUTATOR);//
+    add("CRCR4", CRCRMutator4.CRCR_MUTATOR);//
+    
+    //AOR&OBBN
+    add("AOR_OBBN1", MathMutator.MATH_MUTATOR);
+    add("AOR_OBBN2", MathMutator2.MATH_MUTATOR);
+    add("AOR_OBBN3", MathMutator3.MATH_MUTATOR);
+    add("AOR_OBBN4", MathMutator4.MATH_MUTATOR);
+    
+    //UOI
+    add("UOI1", AddIncrementsMutator.UOI_MUTATOR);//
+    add("UOI2", AddDecrementsMutator.UOI_MUTATOR);//
+    add("UOI3", RemoveIncrementsMutator.REMOVE_INCREMENTS_MUTATOR);//
     /**
      * Default mutator that mutates increments, decrements and assignment
      * increments and decrements of local variables.
      */
-    add("ADD_INCREMENTS", AddIncrementsMutator.ADD_INCREMENTS_MUTATOR);
-    add("ADD_DECREMENTS", AddDecrementsMutator.ADD_DECREMENTS_MUTATOR);
-    add("NEGATE_VARIABLES", NegateVariableMutator.NEGATE_VARIABLE_MUTATOR);
     
     add("INCREMENTS", IncrementsMutator.INCREMENTS_MUTATOR);
     
@@ -214,12 +235,9 @@ public final class Mutator {
   public static Collection<MethodMutatorFactory> defaults() {
     return group(InvertNegsMutator.INVERT_NEGS_MUTATOR,
         ReturnValsMutator.RETURN_VALS_MUTATOR, MathMutator.MATH_MUTATOR,
-        MathMutator2.MATH_MUTATOR2, MathMutator3.MATH_MUTATOR3, MathMutator4.MATH_MUTATOR4,
         VoidMethodCallMutator.VOID_METHOD_CALL_MUTATOR,
         NegateConditionalsMutator.NEGATE_CONDITIONALS_MUTATOR,
         ConditionalsBoundaryMutator.CONDITIONALS_BOUNDARY_MUTATOR,
-        ConditionalsBoundaryMutator2.CONDITIONALS_BOUNDARY_MUTATOR2,
-        ConditionalsBoundaryMutator3.CONDITIONALS_BOUNDARY_MUTATOR3,
         IncrementsMutator.INCREMENTS_MUTATOR);
   }
 

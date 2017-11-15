@@ -28,7 +28,7 @@ import org.pitest.mutationtest.engine.gregor.ZeroOperandMutation;
 
 public enum MathMutator3 implements MethodMutatorFactory {
 
-  MATH_MUTATOR3;
+  MATH_MUTATOR;
 
   @Override
   public MethodVisitor create(final MutationContext context,
@@ -67,20 +67,8 @@ class MathMethodVisitor3 extends AbstractInsnMutator {
         "Replaced integer multiplication with subtraction"));
     MUTATIONS.put(Opcodes.IDIV, new InsnSubstitution(Opcodes.IADD,
         "Replaced integer division with addition"));
-    MUTATIONS.put(Opcodes.IOR, new InsnSubstitution(Opcodes.IAND,
-        "Replaced bitwise OR with AND"));
-    MUTATIONS.put(Opcodes.IAND, new InsnSubstitution(Opcodes.IOR,
-        "Replaced bitwise AND with OR"));
     MUTATIONS.put(Opcodes.IREM, new InsnSubstitution(Opcodes.IADD,
         "Replaced integer modulus with addition"));
-    MUTATIONS.put(Opcodes.IXOR, new InsnSubstitution(Opcodes.IAND,
-        "Replaced XOR with AND"));
-    MUTATIONS.put(Opcodes.ISHL, new InsnSubstitution(Opcodes.ISHR,
-        "Replaced Shift Left with Shift Right"));
-    MUTATIONS.put(Opcodes.ISHR, new InsnSubstitution(Opcodes.ISHL,
-        "Replaced Shift Right with Shift Left"));
-    MUTATIONS.put(Opcodes.IUSHR, new InsnSubstitution(Opcodes.ISHL,
-        "Replaced Unsigned Shift Right with Shift Left"));
 
     // longs
     MUTATIONS.put(Opcodes.LADD, new InsnSubstitution(Opcodes.LDIV,
@@ -91,20 +79,8 @@ class MathMethodVisitor3 extends AbstractInsnMutator {
         "Replaced long multiplication with subtraction"));
     MUTATIONS.put(Opcodes.LDIV, new InsnSubstitution(Opcodes.LADD,
         "Replaced long division with addition"));
-    MUTATIONS.put(Opcodes.LOR, new InsnSubstitution(Opcodes.LAND,
-        "Replaced bitwise OR with AND"));
-    MUTATIONS.put(Opcodes.LAND, new InsnSubstitution(Opcodes.LOR,
-        "Replaced bitwise AND with OR"));
     MUTATIONS.put(Opcodes.LREM, new InsnSubstitution(Opcodes.LADD,
         "Replaced long modulus with addition"));
-    MUTATIONS.put(Opcodes.LXOR, new InsnSubstitution(Opcodes.LAND,
-        "Replaced XOR with AND"));
-    MUTATIONS.put(Opcodes.LSHL, new InsnSubstitution(Opcodes.LSHR,
-        "Replaced Shift Left with Shift Right"));
-    MUTATIONS.put(Opcodes.LSHR, new InsnSubstitution(Opcodes.LSHL,
-        "Replaced Shift Right with Shift Left"));
-    MUTATIONS.put(Opcodes.LUSHR, new InsnSubstitution(Opcodes.LSHL,
-        "Replaced Unsigned Shift Right with Shift Left"));
 
     // floats
     MUTATIONS.put(Opcodes.FADD, new InsnSubstitution(Opcodes.FDIV,
