@@ -33,28 +33,21 @@ import org.pitest.help.PitHelpError;
 import org.pitest.mutationtest.engine.gregor.MethodMutatorFactory;
 import org.pitest.mutationtest.engine.gregor.mutators.ArgumentPropagationMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator;
-import org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator2;
-import org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator3;
+import org.pitest.mutationtest.engine.gregor.mutators.RORMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.ConstructorCallMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.IncrementsMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.InlineConstantMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.InvertNegsMutator;
+import org.pitest.mutationtest.engine.gregor.mutators.AORMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.MathMutator;
-import org.pitest.mutationtest.engine.gregor.mutators.MathMutator2;
-import org.pitest.mutationtest.engine.gregor.mutators.MathMutator3;
-import org.pitest.mutationtest.engine.gregor.mutators.MathMutator4;
 import org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator.Choice;
 import org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator;
-import org.pitest.mutationtest.engine.gregor.mutators.experimental.AddIncrementsMutator;
-import org.pitest.mutationtest.engine.gregor.mutators.experimental.AddDecrementsMutator;
+import org.pitest.mutationtest.engine.gregor.mutators.experimental.UOIMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.experimental.ABSMutator;
-import org.pitest.mutationtest.engine.gregor.mutators.experimental.CRCRMutator1;
-import org.pitest.mutationtest.engine.gregor.mutators.experimental.CRCRMutator2;
-import org.pitest.mutationtest.engine.gregor.mutators.experimental.CRCRMutator3;
-import org.pitest.mutationtest.engine.gregor.mutators.experimental.CRCRMutator4;
+import org.pitest.mutationtest.engine.gregor.mutators.experimental.CRCRMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveIncrementsMutator;
@@ -118,28 +111,29 @@ public final class Mutator {
     
     //ROR
     add("ROR1",
-            ConditionalsBoundaryMutator.CONDITIONALS_BOUNDARY_MUTATOR);
+            RORMutator.ConditionalsBoundaryMutator.CONDITIONALS_BOUNDARY_MUTATOR);//
     add("ROR2",
-            ConditionalsBoundaryMutator2.CONDITIONALS_BOUNDARY_MUTATOR2);
+            RORMutator.ConditionalsBoundaryMutator2.CONDITIONALS_BOUNDARY_MUTATOR);//
     add("ROR3",
-            ConditionalsBoundaryMutator3.CONDITIONALS_BOUNDARY_MUTATOR3);
+            RORMutator.ConditionalsBoundaryMutator3.CONDITIONALS_BOUNDARY_MUTATOR);//
     
     //CRCR
-    add("CRCR1", CRCRMutator1.CRCR_MUTATOR);//
-    add("CRCR2", CRCRMutator2.CRCR_MUTATOR);//
-    add("CRCR3", CRCRMutator3.CRCR_MUTATOR);//
-    add("CRCR4", CRCRMutator4.CRCR_MUTATOR);//
+    add("CRCR1", CRCRMutator.CRCRMutator1.CRCR_MUTATOR);//
+    add("CRCR2", CRCRMutator.CRCRMutator2.CRCR_MUTATOR);//
+    add("CRCR3", CRCRMutator.CRCRMutator3.CRCR_MUTATOR);//
+    add("CRCR4", CRCRMutator.CRCRMutator4.CRCR_MUTATOR);//
+    add("CRCR5", CRCRMutator.CRCRMutator5.CRCR_MUTATOR);//
     
     //AOR&OBBN
-    add("AOR_OBBN1", MathMutator.MATH_MUTATOR);
-    add("AOR_OBBN2", MathMutator2.MATH_MUTATOR);
-    add("AOR_OBBN3", MathMutator3.MATH_MUTATOR);
-    add("AOR_OBBN4", MathMutator4.MATH_MUTATOR);
+    add("AOR_OBBN1", AORMutator.MathMutator.MATH_MUTATOR);
+    add("AOR_OBBN2", AORMutator.MathMutator2.MATH_MUTATOR);
+    add("AOR_OBBN3", AORMutator.MathMutator3.MATH_MUTATOR);
+    add("AOR_OBBN4", AORMutator.MathMutator4.MATH_MUTATOR);
     
     //UOI
-    add("UOI1", AddIncrementsMutator.UOI_MUTATOR);//
-    add("UOI2", AddDecrementsMutator.UOI_MUTATOR);//
-    add("UOI3", RemoveIncrementsMutator.REMOVE_INCREMENTS_MUTATOR);//
+    add("UOI1", UOIMutator.AddIncrementsMutator.UOI_MUTATOR);//
+    add("UOI2", UOIMutator.AddDecrementsMutator.UOI_MUTATOR);//
+    add("UOI3", UOIMutator.RemoveIncrementsMutator.REMOVE_INCREMENTS_MUTATOR);//
     /**
      * Default mutator that mutates increments, decrements and assignment
      * increments and decrements of local variables.
