@@ -47,6 +47,7 @@ import org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator.C
 import org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.experimental.UOIMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.experimental.ABSMutator;
+import org.pitest.mutationtest.engine.gregor.mutators.experimental.AODMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.experimental.CRCRMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator;
@@ -111,11 +112,11 @@ public final class Mutator {
     
     //ROR
     add("ROR1",
-            RORMutator.ConditionalsBoundaryMutator.CONDITIONALS_BOUNDARY_MUTATOR);//
+            RORMutator.ConditionalsBoundaryMutator.ROR_MUTATOR);//
     add("ROR2",
-            RORMutator.ConditionalsBoundaryMutator2.CONDITIONALS_BOUNDARY_MUTATOR);//
+            RORMutator.ConditionalsBoundaryMutator2.ROR_MUTATOR);//
     add("ROR3",
-            RORMutator.ConditionalsBoundaryMutator3.CONDITIONALS_BOUNDARY_MUTATOR);//
+            RORMutator.ConditionalsBoundaryMutator3.ROR_MUTATOR);//
     
     //CRCR
     add("CRCR1", CRCRMutator.CRCRMutator1.CRCR_MUTATOR);//
@@ -125,15 +126,20 @@ public final class Mutator {
     add("CRCR5", CRCRMutator.CRCRMutator5.CRCR_MUTATOR);//
     
     //AOR&OBBN
-    add("AOR_OBBN1", AORMutator.MathMutator.MATH_MUTATOR);
-    add("AOR_OBBN2", AORMutator.MathMutator2.MATH_MUTATOR);
-    add("AOR_OBBN3", AORMutator.MathMutator3.MATH_MUTATOR);
-    add("AOR_OBBN4", AORMutator.MathMutator4.MATH_MUTATOR);
+    add("AOR_OBBN1", AORMutator.MathMutator.AOR_OBBN_MUTATOR);
+    add("AOR_OBBN2", AORMutator.MathMutator2.AOR_OBBN_MUTATOR);
+    add("AOR_OBBN3", AORMutator.MathMutator3.AOR_OBBN_MUTATOR);
+    add("AOR_OBBN4", AORMutator.MathMutator4.AOR_OBBN_MUTATOR);
     
     //UOI
     add("UOI1", UOIMutator.AddIncrementsMutator.UOI_MUTATOR);//
     add("UOI2", UOIMutator.AddDecrementsMutator.UOI_MUTATOR);//
-    add("UOI3", UOIMutator.RemoveIncrementsMutator.REMOVE_INCREMENTS_MUTATOR);//
+    add("UOI3", UOIMutator.RemoveIncrementsMutator.UOI_MUTATOR);//
+    
+    //AOD
+    add("AOD1", AODMutator.AODMutator1.AOD_MUTATOR);//
+    add("AOD2", AODMutator.AODMutator2.AOD_MUTATOR);//
+    
     /**
      * Default mutator that mutates increments, decrements and assignment
      * increments and decrements of local variables.

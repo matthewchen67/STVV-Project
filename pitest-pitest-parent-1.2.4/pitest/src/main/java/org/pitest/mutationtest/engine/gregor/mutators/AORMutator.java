@@ -15,7 +15,7 @@ import org.pitest.mutationtest.engine.gregor.ZeroOperandMutation;
 public class AORMutator {
     public enum MathMutator implements MethodMutatorFactory {
 
-      MATH_MUTATOR;
+      AOR_OBBN_MUTATOR;
 
       @Override
       public MethodVisitor create(final MutationContext context,
@@ -37,7 +37,7 @@ public class AORMutator {
     
     public enum MathMutator2 implements MethodMutatorFactory {
 
-      MATH_MUTATOR;
+      AOR_OBBN_MUTATOR;
 
       @Override
       public MethodVisitor create(final MutationContext context,
@@ -59,7 +59,7 @@ public class AORMutator {
     
     public enum MathMutator3 implements MethodMutatorFactory {
 
-      MATH_MUTATOR;
+      AOR_OBBN_MUTATOR;
 
       @Override
       public MethodVisitor create(final MutationContext context,
@@ -81,7 +81,7 @@ public class AORMutator {
     
     public enum MathMutator4 implements MethodMutatorFactory {
 
-      MATH_MUTATOR;
+      AOR_OBBN_MUTATOR;
 
       @Override
       public MethodVisitor create(final MutationContext context,

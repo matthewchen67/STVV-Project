@@ -13,7 +13,7 @@ import org.pitest.mutationtest.engine.gregor.MutationContext;
 public class RORMutator {
     public enum ConditionalsBoundaryMutator implements MethodMutatorFactory {
 
-      CONDITIONALS_BOUNDARY_MUTATOR;
+      ROR_MUTATOR;
 
       @Override
       public MethodVisitor create(final MutationContext context,
@@ -35,7 +35,7 @@ public class RORMutator {
     
     public enum ConditionalsBoundaryMutator2 implements MethodMutatorFactory {
 
-      CONDITIONALS_BOUNDARY_MUTATOR;
+      ROR_MUTATOR;
 
       @Override
       public MethodVisitor create(final MutationContext context,
@@ -57,7 +57,7 @@ public class RORMutator {
     
     public enum ConditionalsBoundaryMutator3 implements MethodMutatorFactory {
 
-      CONDITIONALS_BOUNDARY_MUTATOR;
+      ROR_MUTATOR;
 
       @Override
       public MethodVisitor create(final MutationContext context,

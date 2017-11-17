@@ -135,7 +135,7 @@ class CRCRMethodVisitorC extends MethodVisitor {
   public void visitIntInsn(final int opcode, final int operand) {
       if (opcode == Opcodes.BIPUSH) {
         final MutationIdentifier newId = this.context.registerMutation(
-            this.factory, "integer operand replaced with " + 1);
+            this.factory, "integer constant replaced with " + 1);
         if (this.context.shouldMutate(newId)) {
             this.mv.visitIntInsn(Opcodes.BIPUSH, 1);
         } else { 
@@ -150,7 +150,7 @@ class CRCRMethodVisitorC extends MethodVisitor {
   public void visitLdcInsn(final Object cst) {
       if (cst instanceof Double) {
         final MutationIdentifier newId = this.context.registerMutation(
-            this.factory, "double operand replaced with " + 1);
+            this.factory, "double constant replaced with " + 1);
         if (this.context.shouldMutate(newId)) {
             this.mv.visitLdcInsn(new Double("1.0"));
         } else { 
@@ -158,7 +158,7 @@ class CRCRMethodVisitorC extends MethodVisitor {
         }
       } else if (cst instanceof Float) {
         final MutationIdentifier newId = this.context.registerMutation(
-            this.factory, "float operand replaced with " + 1);
+            this.factory, "float constant replaced with " + 1);
         if (this.context.shouldMutate(newId)) {
             this.mv.visitLdcInsn(new Float("1.0"));
         } else { 
@@ -166,7 +166,7 @@ class CRCRMethodVisitorC extends MethodVisitor {
         }
       } else if (cst instanceof Long) {
         final MutationIdentifier newId = this.context.registerMutation(
-            this.factory, "long operand replaced with " + 1);
+            this.factory, "long constant replaced with " + 1);
         if (this.context.shouldMutate(newId)) {
             this.mv.visitLdcInsn(new Long(1L));
         } else { 
@@ -174,6 +174,45 @@ class CRCRMethodVisitorC extends MethodVisitor {
         }
       } else {
         super.visitLdcInsn(cst);
+      }
+  }
+  
+  @Override
+  public void visitInsn(final int opcode) {
+      if (opcode == Opcodes.ICONST_M1 || opcode == Opcodes.ICONST_0 || opcode == Opcodes.ICONST_1 || opcode == Opcodes.ICONST_2 || opcode == Opcodes.ICONST_3 || opcode == Opcodes.ICONST_4 || opcode == Opcodes.ICONST_5) {
+          final MutationIdentifier newId = this.context.registerMutation(
+                    this.factory, "Integer constant replaced with " + 1);
+          if (this.context.shouldMutate(newId)) {
+              this.mv.visitInsn(Opcodes.ICONST_1);
+          } else {
+              super.visitInsn(opcode);
+          }
+      } else if (opcode == Opcodes.DCONST_1 || opcode == Opcodes.DCONST_0) {
+          final MutationIdentifier newId = this.context.registerMutation(
+                  this.factory, "Double constant replaced with " + 1);
+          if (this.context.shouldMutate(newId)) {
+              this.mv.visitInsn(Opcodes.DCONST_1);
+          } else {
+              super.visitInsn(opcode);
+          }
+      } else if (opcode == Opcodes.FCONST_1 || opcode == Opcodes.FCONST_0 || opcode == Opcodes.FCONST_2) {
+          final MutationIdentifier newId = this.context.registerMutation(
+                  this.factory, "Float constant replaced with " + 1);
+          if (this.context.shouldMutate(newId)) {
+              this.mv.visitInsn(Opcodes.FCONST_1);
+          } else {
+              super.visitInsn(opcode);
+          }
+      } else if (opcode == Opcodes.LCONST_1 || opcode == Opcodes.LCONST_0) {
+          final MutationIdentifier newId = this.context.registerMutation(
+                  this.factory, "Long constant replaced with " + 1);
+          if (this.context.shouldMutate(newId)) {
+              this.mv.visitInsn(Opcodes.LCONST_1);
+          } else {
+              super.visitInsn(opcode);
+          }
+      } else {
+          super.visitInsn(opcode);
       }
   }
 
@@ -195,7 +234,7 @@ class CRCRMethodVisitorC2 extends MethodVisitor {
   public void visitIntInsn(final int opcode, final int operand) {
       if (opcode == Opcodes.BIPUSH) {
         final MutationIdentifier newId = this.context.registerMutation(
-            this.factory, "integer operand replaced with " + 0);
+            this.factory, "integer constant replaced with " + 0);
         if (this.context.shouldMutate(newId)) {
             super.visitIntInsn(Opcodes.BIPUSH, 0);
         } else {
@@ -210,7 +249,7 @@ class CRCRMethodVisitorC2 extends MethodVisitor {
   public void visitLdcInsn(final Object cst) {
       if (cst instanceof Double) {
         final MutationIdentifier newId = this.context.registerMutation(
-            this.factory, "double operand replaced with " + 0);
+            this.factory, "double constant replaced with " + 0);
         if (this.context.shouldMutate(newId)) {
             super.visitLdcInsn(new Double("0.0"));
         } else {
@@ -218,7 +257,7 @@ class CRCRMethodVisitorC2 extends MethodVisitor {
         }
       } else if (cst instanceof Float) {
         final MutationIdentifier newId = this.context.registerMutation(
-            this.factory, "float operand replaced with " + 0);
+            this.factory, "float constant replaced with " + 0);
         if (this.context.shouldMutate(newId)) {
             super.visitLdcInsn(new Float("0.0"));
         } else {
@@ -226,7 +265,7 @@ class CRCRMethodVisitorC2 extends MethodVisitor {
         }
       } else if (cst instanceof Long) {
         final MutationIdentifier newId = this.context.registerMutation(
-            this.factory, "long operand replaced with " + 0);
+            this.factory, "long constant replaced with " + 0);
         if (this.context.shouldMutate(newId)) {
             super.visitLdcInsn(new Long(0L));
         } else {
@@ -234,6 +273,45 @@ class CRCRMethodVisitorC2 extends MethodVisitor {
         }
       } else {
         super.visitLdcInsn(cst);
+      }
+  }
+  
+  @Override
+  public void visitInsn(final int opcode) {
+      if (opcode == Opcodes.ICONST_M1 || opcode == Opcodes.ICONST_0 || opcode == Opcodes.ICONST_1 || opcode == Opcodes.ICONST_2 || opcode == Opcodes.ICONST_3 || opcode == Opcodes.ICONST_4 || opcode == Opcodes.ICONST_5) {
+          final MutationIdentifier newId = this.context.registerMutation(
+                    this.factory, "Integer constant replaced with " + 0);
+          if (this.context.shouldMutate(newId)) {
+              this.mv.visitInsn(Opcodes.ICONST_0);
+          } else {
+              super.visitInsn(opcode);
+          }
+      } else if (opcode == Opcodes.DCONST_1 || opcode == Opcodes.DCONST_0) {
+          final MutationIdentifier newId = this.context.registerMutation(
+                  this.factory, "Double constant replaced with " + 0);
+          if (this.context.shouldMutate(newId)) {
+              this.mv.visitInsn(Opcodes.DCONST_0);
+          } else {
+              super.visitInsn(opcode);
+          }
+      } else if (opcode == Opcodes.FCONST_1 || opcode == Opcodes.FCONST_0 || opcode == Opcodes.FCONST_2) {
+          final MutationIdentifier newId = this.context.registerMutation(
+                  this.factory, "Float constant replaced with " + 0);
+          if (this.context.shouldMutate(newId)) {
+              this.mv.visitInsn(Opcodes.FCONST_0);
+          } else {
+              super.visitInsn(opcode);
+          }
+      } else if (opcode == Opcodes.LCONST_1 || opcode == Opcodes.LCONST_0) {
+          final MutationIdentifier newId = this.context.registerMutation(
+                  this.factory, "Long constant replaced with " + 0);
+          if (this.context.shouldMutate(newId)) {
+              this.mv.visitInsn(Opcodes.LCONST_0);
+          } else {
+              super.visitInsn(opcode);
+          }
+      } else {
+          super.visitInsn(opcode);
       }
   }
 
@@ -255,7 +333,7 @@ class CRCRMethodVisitorC3 extends MethodVisitor {
   public void visitIntInsn(final int opcode, final int operand) {
       if (opcode == Opcodes.BIPUSH) {
         final MutationIdentifier newId = this.context.registerMutation(
-            this.factory, "integer operand replaced with it's negation");
+            this.factory, "integer constant replaced with it's negation");
         if (this.context.shouldMutate(newId)) {
             this.mv.visitIntInsn(Opcodes.BIPUSH, -operand);
         } else {
@@ -270,7 +348,7 @@ class CRCRMethodVisitorC3 extends MethodVisitor {
   public void visitLdcInsn(final Object cst) {
       if (cst instanceof Double) {
         final MutationIdentifier newId = this.context.registerMutation(
-            this.factory, "double operand replaced with it's negation");
+            this.factory, "double constant replaced with it's negation");
         if (this.context.shouldMutate(newId)) {
             this.mv.visitLdcInsn(new Double(-((Double) cst).doubleValue()));
         } else {
@@ -278,7 +356,7 @@ class CRCRMethodVisitorC3 extends MethodVisitor {
         }
       } else if (cst instanceof Float) {
         final MutationIdentifier newId = this.context.registerMutation(
-            this.factory, "float operand replaced with it's negation");
+            this.factory, "float constant replaced with it's negation");
         if (this.context.shouldMutate(newId)) {
             this.mv.visitLdcInsn(new Float(-((Float) cst).floatValue()));
         } else {
@@ -286,7 +364,7 @@ class CRCRMethodVisitorC3 extends MethodVisitor {
         }
       } else if (cst instanceof Long) {
         final MutationIdentifier newId = this.context.registerMutation(
-            this.factory, "long operand replaced with it's negation");
+            this.factory, "long constant replaced with it's negation");
         if (this.context.shouldMutate(newId)) {
             this.mv.visitLdcInsn(new Long(-((Long) cst).longValue()));
         } else {
@@ -294,6 +372,53 @@ class CRCRMethodVisitorC3 extends MethodVisitor {
         }
       } else {
         super.visitLdcInsn(cst);
+      }
+  }
+  
+  @Override
+  public void visitInsn(final int opcode) {
+      if (opcode == Opcodes.ICONST_M1 || opcode == Opcodes.ICONST_0 || opcode == Opcodes.ICONST_1 || opcode == Opcodes.ICONST_2 || opcode == Opcodes.ICONST_3 || opcode == Opcodes.ICONST_4 || opcode == Opcodes.ICONST_5) {
+          final MutationIdentifier newId = this.context.registerMutation(
+                    this.factory, "Integer constant replaced with it's negation");
+          if (this.context.shouldMutate(newId)) {
+              this.mv.visitInsn(opcode);
+              this.mv.visitInsn(Opcodes.ICONST_M1);
+              this.mv.visitInsn(Opcodes.IMUL);
+          } else {
+              super.visitInsn(opcode);
+          }
+      } else if (opcode == Opcodes.DCONST_1 || opcode == Opcodes.DCONST_0) {
+          final MutationIdentifier newId = this.context.registerMutation(
+                  this.factory, "Double constant replaced with it's negation");
+          if (this.context.shouldMutate(newId)) {
+              this.mv.visitInsn(opcode);
+              this.mv.visitLdcInsn(new Double("-1.0"));
+              this.visitInsn(Opcodes.DMUL);
+          } else {
+              super.visitInsn(opcode);
+          }
+      } else if (opcode == Opcodes.FCONST_1 || opcode == Opcodes.FCONST_0 || opcode == Opcodes.FCONST_2) {
+          final MutationIdentifier newId = this.context.registerMutation(
+                  this.factory, "Float constant replaced with it's negation");
+          if (this.context.shouldMutate(newId)) {
+              this.mv.visitInsn(opcode);
+              this.mv.visitLdcInsn(new Float("-1.0"));
+              this.visitInsn(Opcodes.FMUL);
+          } else {
+              super.visitInsn(opcode);
+          }
+      } else if (opcode == Opcodes.LCONST_1 || opcode == Opcodes.LCONST_0) {
+          final MutationIdentifier newId = this.context.registerMutation(
+                  this.factory, "Long constant replaced with it's negation");
+          if (this.context.shouldMutate(newId)) {
+              this.mv.visitInsn(opcode);
+              this.mv.visitLdcInsn(new Long(-1L));
+              this.visitInsn(Opcodes.FMUL);
+          } else {
+              super.visitInsn(opcode);
+          }
+      } else {
+          super.visitInsn(opcode);
       }
   }
 
@@ -315,7 +440,7 @@ class CRCRMethodVisitorC4 extends MethodVisitor {
   public void visitIntInsn(final int opcode, final int operand) {
       if (opcode == Opcodes.BIPUSH) {
         final MutationIdentifier newId = this.context.registerMutation(
-            this.factory, "integer operand incremented by 1");
+            this.factory, "integer constant incremented by 1");
         if (this.context.shouldMutate(newId)) {
             this.mv.visitIntInsn(Opcodes.BIPUSH, operand + 1);
         } else {
@@ -330,7 +455,7 @@ class CRCRMethodVisitorC4 extends MethodVisitor {
   public void visitLdcInsn(final Object cst) {
       if (cst instanceof Double) {
         final MutationIdentifier newId = this.context.registerMutation(
-            this.factory, "double operand incremented by 1");
+            this.factory, "double constant incremented by 1");
         if (this.context.shouldMutate(newId)) {
             this.mv.visitLdcInsn(new Double(((Double) cst).doubleValue() + 1));
         } else {
@@ -338,7 +463,7 @@ class CRCRMethodVisitorC4 extends MethodVisitor {
         }
       } else if (cst instanceof Float) {
         final MutationIdentifier newId = this.context.registerMutation(
-            this.factory, "float operand incremented by 1");
+            this.factory, "float constant incremented by 1");
         if (this.context.shouldMutate(newId)) {
             this.mv.visitLdcInsn(new Float(((Float) cst).floatValue() + 1));
         } else {
@@ -346,7 +471,7 @@ class CRCRMethodVisitorC4 extends MethodVisitor {
         }
       } else if (cst instanceof Long) {
         final MutationIdentifier newId = this.context.registerMutation(
-            this.factory, "long operand incremented by 1");
+            this.factory, "long constant incremented by 1");
         if (this.context.shouldMutate(newId)) {
             this.mv.visitLdcInsn(new Long(((Long) cst).longValue() + 1));
         } else {
@@ -354,6 +479,52 @@ class CRCRMethodVisitorC4 extends MethodVisitor {
         }
       } else {
         super.visitLdcInsn(cst);
+      }
+  }
+  
+  public void visitInsn(final int opcode) {
+      if (opcode == Opcodes.ICONST_M1 || opcode == Opcodes.ICONST_0 || opcode == Opcodes.ICONST_1 || opcode == Opcodes.ICONST_2 || opcode == Opcodes.ICONST_3 || opcode == Opcodes.ICONST_4 || opcode == Opcodes.ICONST_5) {
+          final MutationIdentifier newId = this.context.registerMutation(
+                    this.factory, "Integer constant incremented by 1");
+          if (this.context.shouldMutate(newId)) {
+              this.mv.visitInsn(opcode);
+              this.mv.visitInsn(Opcodes.ICONST_1);
+              this.mv.visitInsn(Opcodes.IADD);
+          } else {
+              super.visitInsn(opcode);
+          }
+      } else if (opcode == Opcodes.DCONST_1 || opcode == Opcodes.DCONST_0) {
+          final MutationIdentifier newId = this.context.registerMutation(
+                  this.factory, "Double constant incremented by 1");
+          if (this.context.shouldMutate(newId)) {
+              this.mv.visitInsn(opcode);
+              this.mv.visitLdcInsn(new Double("1.0"));
+              this.visitInsn(Opcodes.DADD);
+          } else {
+              super.visitInsn(opcode);
+          }
+      } else if (opcode == Opcodes.FCONST_1 || opcode == Opcodes.FCONST_0 || opcode == Opcodes.FCONST_2) {
+          final MutationIdentifier newId = this.context.registerMutation(
+                  this.factory, "Float constant incremented by 1");
+          if (this.context.shouldMutate(newId)) {
+              this.mv.visitInsn(opcode);
+              this.mv.visitLdcInsn(new Float("1.0"));
+              this.visitInsn(Opcodes.FADD);
+          } else {
+              super.visitInsn(opcode);
+          }
+      } else if (opcode == Opcodes.LCONST_1 || opcode == Opcodes.LCONST_0) {
+          final MutationIdentifier newId = this.context.registerMutation(
+                  this.factory, "Long constant incremented by 1");
+          if (this.context.shouldMutate(newId)) {
+              this.mv.visitInsn(opcode);
+              this.mv.visitLdcInsn(new Long(1L));
+              this.visitInsn(Opcodes.FADD);
+          } else {
+              super.visitInsn(opcode);
+          }
+      } else {
+          super.visitInsn(opcode);
       }
   }
 
@@ -375,7 +546,7 @@ class CRCRMethodVisitorC5 extends MethodVisitor {
   public void visitIntInsn(final int opcode, final int operand) {
       if (opcode == Opcodes.BIPUSH) {
         final MutationIdentifier newId = this.context.registerMutation(
-            this.factory, "integer operand decremented by 1");
+            this.factory, "integer constant decremented by 1");
         if (this.context.shouldMutate(newId)) {
             this.mv.visitIntInsn(Opcodes.BIPUSH, operand - 1);
         } else {
@@ -390,7 +561,7 @@ class CRCRMethodVisitorC5 extends MethodVisitor {
   public void visitLdcInsn(final Object cst) {
       if (cst instanceof Double) {
         final MutationIdentifier newId = this.context.registerMutation(
-            this.factory, "double operand decremented by 1");
+            this.factory, "double constant decremented by 1");
         if (this.context.shouldMutate(newId)) {
             this.mv.visitLdcInsn(new Double(((Double) cst).doubleValue() - 1));
         } else {
@@ -398,7 +569,7 @@ class CRCRMethodVisitorC5 extends MethodVisitor {
         }
       } else if (cst instanceof Float) {
         final MutationIdentifier newId = this.context.registerMutation(
-            this.factory, "float operand decremented by 1");
+            this.factory, "float constant decremented by 1");
         if (this.context.shouldMutate(newId)) {
             this.mv.visitLdcInsn(new Float(((Float) cst).floatValue() - 1));
         } else {
@@ -406,7 +577,7 @@ class CRCRMethodVisitorC5 extends MethodVisitor {
         }
       } else if (cst instanceof Long) {
         final MutationIdentifier newId = this.context.registerMutation(
-            this.factory, "long operand decremented by 1");
+            this.factory, "long constant decremented by 1");
         if (this.context.shouldMutate(newId)) {
             this.mv.visitLdcInsn(new Long(((Long) cst).longValue() - 1));
         } else {
@@ -414,6 +585,52 @@ class CRCRMethodVisitorC5 extends MethodVisitor {
         }
       } else {
         super.visitLdcInsn(cst);
+      }
+  }
+  
+  public void visitInsn(final int opcode) {
+      if (opcode == Opcodes.ICONST_M1 || opcode == Opcodes.ICONST_0 || opcode == Opcodes.ICONST_1 || opcode == Opcodes.ICONST_2 || opcode == Opcodes.ICONST_3 || opcode == Opcodes.ICONST_4 || opcode == Opcodes.ICONST_5) {
+          final MutationIdentifier newId = this.context.registerMutation(
+                    this.factory, "Integer constant decremented by 1");
+          if (this.context.shouldMutate(newId)) {
+              this.mv.visitInsn(opcode);
+              this.mv.visitInsn(Opcodes.ICONST_M1);
+              this.mv.visitInsn(Opcodes.IADD);
+          } else {
+              super.visitInsn(opcode);
+          }
+      } else if (opcode == Opcodes.DCONST_1 || opcode == Opcodes.DCONST_0) {
+          final MutationIdentifier newId = this.context.registerMutation(
+                  this.factory, "Double constant decremented by 1");
+          if (this.context.shouldMutate(newId)) {
+              this.mv.visitInsn(opcode);
+              this.mv.visitLdcInsn(new Double("-1.0"));
+              this.visitInsn(Opcodes.DADD);
+          } else {
+              super.visitInsn(opcode);
+          }
+      } else if (opcode == Opcodes.FCONST_1 || opcode == Opcodes.FCONST_0 || opcode == Opcodes.FCONST_2) {
+          final MutationIdentifier newId = this.context.registerMutation(
+                  this.factory, "Float constant decremented by 1");
+          if (this.context.shouldMutate(newId)) {
+              this.mv.visitInsn(opcode);
+              this.mv.visitLdcInsn(new Float("-1.0"));
+              this.visitInsn(Opcodes.FADD);
+          } else {
+              super.visitInsn(opcode);
+          }
+      } else if (opcode == Opcodes.LCONST_1 || opcode == Opcodes.LCONST_0) {
+          final MutationIdentifier newId = this.context.registerMutation(
+                  this.factory, "Long constant decremented by 1");
+          if (this.context.shouldMutate(newId)) {
+              this.mv.visitInsn(opcode);
+              this.mv.visitLdcInsn(new Long(-1L));
+              this.visitInsn(Opcodes.FADD);
+          } else {
+              super.visitInsn(opcode);
+          }
+      } else {
+          super.visitInsn(opcode);
       }
   }
 

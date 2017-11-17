@@ -10,7 +10,7 @@ import org.pitest.mutationtest.engine.gregor.MutationContext;
 public class UOIMutator {
     public enum RemoveIncrementsMutator implements MethodMutatorFactory {
 
-      REMOVE_INCREMENTS_MUTATOR;
+      UOI_MUTATOR;
 
       @Override
       public MethodVisitor create(final MutationContext context,
